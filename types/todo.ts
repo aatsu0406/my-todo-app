@@ -4,6 +4,6 @@ export interface Todo {
   title: string;
   isCompleted: boolean;
   createdAt: Date;
-  priority: 'low' | 'medium' | 'high';
-  deadline: Date;
+  priority: '低' | '中' | '高';
+  deadline?: Date;
 }
