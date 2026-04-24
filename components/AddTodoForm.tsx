@@ -13,7 +13,6 @@ export default function AddTodoForm({ onAdd }: AddTodoFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) return; // 空っぽなら何もしない
-    
     onAdd(title, priority);
     setTitle(""); // 入力欄を空にする
   };
