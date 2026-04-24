@@ -46,9 +46,16 @@ export default function Home() {
 
   // 【削除】TODO削除
   const deleteTodo = (id: string) => {
-    const newTodos = todos.filter((todo) => todo.id !== id);
+    const newTodos = todos.filter((todo) => todo.id !== id);  // 指定されたID以外のTODOを残す
     setTodos(newTodos);
   };
+
+  const sortedTodos = [...todos].sort((a, b) => {
+    if (a.isCompleted === b.isCompleted) {  //ステータスが同じ場合は作成日時でソート
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    }
+    return a.isCompleted ? 1 : -1; //ステータスが異なる場合は未完了を優先
+  });
 
   return (
     <main className="min-h-screen bg-slate-50 p-8">
@@ -56,8 +63,8 @@ export default function Home() {
         <h1 className="text-3xl font-bold text-slate-800 mb-8">TODOリスト</h1>
         <AddTodoForm onAdd={addTodo} />
         <div className="space-y-4">
-          {todos.length > 0 ? (
-            todos.map((todo) => (
+          {sortedTodos.length > 0 ? (
+            sortedTodos.map((todo) => (
               <TodoItem 
                 key={todo.id} 
                 todo={todo} 
