@@ -40,7 +40,7 @@ export default function AddTodoForm({ onAdd }: AddTodoFormProps) {
         <select
           value={priority}
           onChange={(e) => setPriority(e.target.value as "低" | "中" | "高")}
-          className="p-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-slate-900"
+          className="p-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-slate-900 cursor-pointer"
         >
           <option value="低">低</option>
           <option value="中">中</option>
@@ -50,7 +50,7 @@ export default function AddTodoForm({ onAdd }: AddTodoFormProps) {
 
       <button
         type="submit"
-        className="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors"
+        className="px-6 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
       >
         追加
       </button>
