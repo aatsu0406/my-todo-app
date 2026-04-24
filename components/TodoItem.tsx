@@ -10,12 +10,26 @@ export default function TodoItem({ todo, onToggle , onDelete}: TodoItemProps) {
 const elapsedHours = Math.floor(    //経過時間算出
     (new Date().getTime() - new Date(todo.createdAt).getTime()) / (1000 * 60 * 60)
     );
+    
 const dateLabel = new Date(todo.createdAt).toLocaleString("ja-JP", {
     month: "2-digit",
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
   });
+
+const getPriorityStyle = (priority: "低" | "中" | "高") => {
+  switch (priority) {
+    case "高":
+      return "bg-red-50 text-red-700 border-red-200 font-bold";
+    case "中":
+      return "bg-yellow-50 text-yellow-700 border-yellow-200";
+    case "低":
+      return "bg-emerald-50 text-emerald-700 border-emerald-200";
+    default:
+      return "bg-slate-50 text-slate-600 border-slate-200";
+  }
+};
 
 return (
     <div className={`flex items-center justify-between p-4 bg-white rounded-lg shadow-sm mb-3 border-l-4 ${todo.isCompleted ? "border-gray-300 bg-gray-50" : "border-blue-500"}`}>
@@ -54,8 +68,8 @@ return (
         </button>
 
         {/* 優先度バッジ */}
-        <span className={`text-[10px] px-1.5 py-0.5   bg-slate-100 rounded font-medium 
-          ${todo.priority === "高" ? "text-red-600 font-bold" : "text-slate-600"}`}>
+        <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium
+          ${getPriorityStyle(todo.priority)}`}>
           {todo.priority}
         </span>
       </div>
